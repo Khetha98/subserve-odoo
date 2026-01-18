@@ -1,0 +1,20 @@
+{
+    'name': 'Subserve Compliance',
+    'version': '1.0',
+    'category': 'Accounting',
+    'summary': 'CIPC & SARS Compliance Documents',
+    'depends': ['base'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/company_views.xml',
+        'reports/cipc_report.xml',
+        'reports/cipc_report_action.xml',
+        'data/compliance_defaults.xml',
+        'views/compliance_views.xml',
+        'views/compliance_action.xml',
+        'views/compliance_menu.xml',
+        'views/add_compliance_data.xml',
+    ],
+    'installable': True,
+    'application': True,
+}

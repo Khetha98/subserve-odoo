@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- List view -->
+    <record id="view_subserve_compliance_list" model="ir.ui.view">
+        <field name="name">subserve.compliance.list</field>
+        <field name="model">subserve.compliance</field>
+        <field name="arch" type="xml">
+        <list string="Compliance" decoration-info="status == 'pending'" decoration-success="status == 'valid'">
+            <field name="name"/>
+            <field name="company_id"/>
+            <field name="expiry_date" widget="remaining_days"/>
+            <field name="beneficial_ownership_filed" widget="boolean_toggle"/>
+            <field name="status" widget="badge" decoration-warning="status == 'pending'" decoration-success="status == 'valid'"/>
+        </list>
+        </field>
+    </record>
+
+
+    <!-- Form view -->
+    <record id="view_subserve_compliance_form" model="ir.ui.view">
+        <field name="name">subserve.compliance.form</field>
+        <field name="model">subserve.compliance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_mark_as_filed" string="Mark as Filed" type="object" class="oe_highlight" invisible="status == 'valid'"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Basic Info">
+                            <field name="name"/>
+                            <field name="company_id"/>
+                            <field name="expiry_date"/>
+                        </group>
+                        <group string="CIPC Checklist">
+                            <field name="is_fas_required"/>
+                            <field name="beneficial_ownership_filed"/>
+                            <field name="reference_number" placeholder="e.g. 9123456789"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

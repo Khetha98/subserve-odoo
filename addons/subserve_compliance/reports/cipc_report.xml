@@ -1,0 +1,37 @@
+<odoo>
+    <template id="report_cipc_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page" style="font-family: Arial, sans-serif; font-size: 12pt; line-height: 1.5; padding: 2cm;">
+                    <h1 style="text-align: center;">Subserve CIPC Compliance Notice</h1>
+                    
+                    <p>Dear Business Owner,</p>
+                    
+                    <p>The Companies and Intellectual Property Commission (CIPC) hereby reminds you that the latest Annual Return for <strong><t t-esc="doc.name"/></strong> (Registration number: <strong><t t-esc="doc.cipc_registration_no"/></strong>) is due as from <strong>28/1/2026</strong>.</p>
+                    
+                    <p>To ensure compliance and to keep your business status active, kindly file and pay your Annual Return:</p>
+                    <ul>
+                        <li><a href="https://www.bizportal.gov.za/">BizPortal</a></li>
+                        <li><a href="https://annualreturns.cipc.co.za/">CIPC Annual Returns</a></li>
+                    </ul>
+                    
+                    <p>When you file your Annual Return, you will also be required to submit either:</p>
+                    <ul>
+                        <li>Financial Accountability Supplement via the CIPC website (<a href="https://www.cipc.co.za/">www.cipc.co.za</a>), or</li>
+                        <li>Audited Financial Statements via iXBRL.</li>
+                    </ul>
+                    
+                    <p>You will also be required to submit the latest Beneficial Ownership Declaration.</p>
+                    
+                    <p>Step-by-step guides are available on the CIPC website: <a href="https://www.cipc.co.za/?page_id=4447">Click here for guides</a>.</p>
+                    
+                    <p>For further enquiries, please email: <a href="mailto:annualreturns2@cipc.co.za">annualreturns2@cipc.co.za</a></p>
+                    
+                    <p>Kind Regards,<br/>
+                    Annual Return Team</p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+

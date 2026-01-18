@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <menuitem id="menu_subserve_root"
+            name="Subserve"
+            web_icon="base,static/description/icon.png"
+            sequence="10"/>
+
+    <menuitem id="menu_subserve_compliance"
+              name="Compliance"
+              parent="menu_subserve_root"
+              action="action_subserve_compliance"
+              sequence="20"/>
+
+</odoo>
