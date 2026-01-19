@@ -64,3 +64,6 @@ __pycache__/
 *.pyo
 *.pyd
 
+odoo.log
+./odoo.log
+
