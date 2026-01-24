@@ -1,0 +1,7 @@
+<!-- views/pos_user_restrictions.xml -->
+<odoo>
+  <record id="group_pos_cashier" model="res.groups">
+    <field name="name">POS Cashier</field>
+    <field name="category_id" ref="base.module_category_sales"/>
+  </record>
+</odoo>

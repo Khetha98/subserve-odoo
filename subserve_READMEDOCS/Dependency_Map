@@ -1,0 +1,41 @@
+Subserve Module Dependency Map
+
+(POS → Inventory → Accounting → Compliance)
+
+
+┌───────────────────────────┐
+│        POS (Frontend)     │
+│ point_of_sale             │
+│ - Cashiers                │
+│ - Payments                │
+│ - Receipts                │
+└──────────────┬────────────┘
+               │
+               ▼
+┌───────────────────────────┐
+│        Inventory          │
+│ stock                     │
+│ - Products                │
+│ - Barcodes                │
+│ - Stock moves             │
+│ - Valuation               │
+└──────────────┬────────────┘
+               │
+               ▼
+┌───────────────────────────┐
+│        Accounting         │
+│ account                   │
+│ - Journals                │
+│ - Cash / Card entries     │
+│ - Debtors / Creditors     │
+│ - Balance sheet           │
+└──────────────┬────────────┘
+               │
+               ▼
+┌───────────────────────────┐
+│     Subserve Compliance   │
+│ subserve_compliance       │
+│ - CIPC / SARS records     │
+│ - Annual returns          │
+│ - Reports                 │
+└───────────────────────────┘
