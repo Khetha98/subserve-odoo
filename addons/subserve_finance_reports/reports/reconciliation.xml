@@ -1,0 +1,9 @@
+<odoo>
+  <report
+    id="reconciliation_pdf"
+    model="subserve.reconciliation.wizard"
+    string="Reconciliation"
+    report_type="qweb-pdf"
+    name="subserve_finance_reports.reconciliation_report"
+    file="subserve_finance_reports.reconciliation_report"/>
+</odoo>

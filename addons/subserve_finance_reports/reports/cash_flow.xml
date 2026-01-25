@@ -1,0 +1,9 @@
+<odoo>
+  <report
+    id="cash_flow_pdf"
+    model="subserve.cash.flow.wizard"
+    string="Cash Flow"
+    report_type="qweb-pdf"
+    name="subserve_finance_reports.cash_flow_report"
+    file="subserve_finance_reports.cash_flow_report"/>
+</odoo>

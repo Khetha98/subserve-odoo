@@ -1,0 +1,9 @@
+<odoo>
+  <report
+    id="income_statement_pdf"
+    model="subserve.income.statement.wizard"
+    string="Income Statement"
+    report_type="qweb-pdf"
+    name="subserve_finance_reports.income_statement_report"
+    file="subserve_finance_reports.income_statement_report"/>
+</odoo>

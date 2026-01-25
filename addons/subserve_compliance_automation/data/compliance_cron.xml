@@ -1,0 +1,10 @@
+<odoo>
+  <record id="cron_vat_check" model="ir.cron">
+    <field name="name">VAT Threshold Check</field>
+    <field name="model_id" ref="base.model_res_company"/>
+    <field name="state">code</field>
+    <field name="code">model._check_vat_threshold()</field>
+    <field name="interval_number">1</field>
+    <field name="interval_type">months</field>
+  </record>
+</odoo>

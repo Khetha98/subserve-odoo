@@ -1,0 +1,9 @@
+<odoo>
+  <report
+    id="balance_sheet_pdf"
+    model="subserve.balance.sheet.wizard"
+    string="Balance Sheet"
+    report_type="qweb-pdf"
+    name="subserve_finance_reports.balance_sheet_report"
+    file="subserve_finance_reports.balance_sheet_report"/>
+</odoo>

@@ -1,0 +1,15 @@
+<odoo>
+  <menuitem id="menu_subserve_finance_root"
+            name="Finance Reports"
+            parent="account.menu_finance"/>
+
+  <menuitem id="menu_balance_sheet"
+            name="Balance Sheet"
+            parent="menu_subserve_finance_root"
+            action="action_balance_sheet"/>
+
+  <menuitem id="menu_income_statement"
+            name="Income Statement"
+            parent="menu_subserve_finance_root"
+            action="action_income_statement"/>
+</odoo>
