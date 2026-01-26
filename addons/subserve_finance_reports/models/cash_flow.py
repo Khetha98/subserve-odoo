@@ -8,9 +8,22 @@ class CashFlowReport(models.TransientModel):
     date_to = fields.Date(required=True)
 
     def get_lines(self):
-        return self.env['account.move.line'].search([
-            ('journal_id.type', 'in', ['cash', 'bank']),
-            ('date', '>=', self.date_from),
-            ('date', '<=', self.date_to),
-            ('move_id.state', '=', 'posted'),
-        ])
+        lines = self.env['account.move.line'].read_group(
+            domain=[
+                ('journal_id.type', 'in', ['cash', 'bank']),
+                ('date', '>=', self.date_from),
+                ('date', '<=', self.date_to),
+                ('move_id.state', '=', 'posted'),
+            ],
+            fields=['debit', 'credit', 'account_id'],
+            groupby=['account_id'],
+        )
+        return [{
+            'account': l['account_id'][1],
+            'balance': l['debit'] - l['credit']
+        } for l in lines]
+
+    def action_print(self):
+        return self.env.ref(
+            'subserve_finance_reports.cash_flow_pdf'
+        ).report_action(self)
