@@ -6,8 +6,8 @@
     'depends': ['account'],
     'data': [
         'security/ir.model.access.csv',
-        'views/report_menu.xml',
-        'views/report_wizards.xml',
+        'views/finance_report_menu.xml',
+        'views/finance_report_wizards.xml',
         'reports/balance_sheet.xml',
         'reports/income_statement.xml',
         'reports/cash_flow.xml',

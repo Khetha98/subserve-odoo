@@ -9,3 +9,10 @@ Upgrade-Safe Rules (memorise these)
 ❌ Edit base XML
 ❌ Change existing fields
 ❌ Touch enterprise paths
+
+
+find and read the files
+=> find . -type f -exec sh -c 'echo "File: {}"; cat "{}"' \;
+openning odoo shell
+=> ./odoo-bin shell -c odoo.config
+

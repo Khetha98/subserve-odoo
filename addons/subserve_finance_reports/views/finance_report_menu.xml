@@ -1,7 +1,13 @@
 <odoo>
+  <!-- Root menu -->
+  <menuitem id="menu_subserve_root"
+            name="Subserve"
+            sequence="10"/>
+
   <menuitem id="menu_subserve_finance_root"
-            name="Finance Reports"
-            parent="account.menu_finance"/>
+            name="Finance"
+            parent="menu_subserve_root"
+            sequence="10"/>
 
   <menuitem id="menu_balance_sheet"
             name="Balance Sheet"
@@ -12,4 +18,14 @@
             name="Income Statement"
             parent="menu_subserve_finance_root"
             action="action_income_statement"/>
+
+  <menuitem id="menu_cash_flow"
+            name="Cash Flow"
+            parent="menu_subserve_finance_root"
+            action="action_cash_flow"/>
+
+  <menuitem id="menu_reconciliation"
+            name="Reconciliation"
+            parent="menu_subserve_finance_root"
+            action="action_reconciliation"/>
 </odoo>

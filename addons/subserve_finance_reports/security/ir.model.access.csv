@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bs,bs,model_subserve_balance_sheet_wizard,base.group_system,1,0,0,0
+access_is,is,model_subserve_income_statement_wizard,base.group_system,1,0,0,0
+access_cf,cf,model_subserve_cash_flow_wizard,base.group_system,1,0,0,0
+access_rec,rec,model_subserve_reconciliation_wizard,base.group_system,1,0,0,0

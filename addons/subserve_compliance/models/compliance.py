@@ -26,3 +26,14 @@ class SubserveCompliance(models.Model):
             record.status = 'valid'
             # Update the company-level boolean you created earlier
             record.company_id.compliance_document_ready = True
+
+    def action_mark_as_submitted(self):
+        for record in self:
+            record.status = 'submitted'
+
+    def action_mark_as_valid(self):
+        for record in self:
+            record.status = 'valid'
+            record.company_id.compliance_document_ready = True
+
+
