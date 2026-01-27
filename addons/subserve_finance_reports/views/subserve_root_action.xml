@@ -1,0 +1,7 @@
+<odoo>
+    <record id="action_subserve_home" model="ir.actions.act_window">
+        <field name="name">Subserve</field>
+        <field name="res_model">subserve.compliance</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

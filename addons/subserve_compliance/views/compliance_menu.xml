@@ -2,9 +2,11 @@
 <odoo>
 
     <menuitem id="menu_subserve_root"
-            name="Subserve"
-            web_icon="base,static/description/icon.png"
-            sequence="10"/>
+          name="Subserve"
+          action="action_subserve_home"
+          web_icon="base,static/description/icon.png"
+          sequence="10"/>
+
 
     <menuitem id="menu_subserve_compliance"
               name="Compliance"

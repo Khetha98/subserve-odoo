@@ -6,29 +6,63 @@ class BalanceSheetReport(models.TransientModel):
 
     date_to = fields.Date(required=True)
 
-    def get_lines(self):
-        account_types = [
-            'asset_receivable', 'asset_cash', 'asset_current', 'asset_non_current', 
-            'asset_prepayments', 'asset_fixed', 'liability_payable', 
-            'liability_credit_card', 'liability_current', 'liability_non_current',
-            'equity', 'equity_unaffected'
+    def get_report_data(self):
+        aml = self.env['account.move.line']
+
+        domain = [
+            ('date', '<=', self.date_to),
+            ('move_id.state', '=', 'posted'),
+            ('display_type', 'not in', ('line_section', 'line_note')),
         ]
-        
-        lines = self.env['account.move.line'].read_group(
-            domain=[
-                ('date', '<=', self.date_to),
-                ('account_id.account_type', 'in', account_types),
-                ('move_id.state', '=', 'posted'),
-                ('display_type', 'not in', ('line_section', 'line_note'))
-            ],
-            fields=['debit', 'credit', 'account_id'],
-            groupby=['account_id']
+
+        lines = aml.read_group(
+            domain=domain,
+            fields=['debit', 'credit', 'account_id', 'account_id.account_type'],
+            groupby=['account_id', 'account_id.account_type'],
         )
 
-        return [{
-            'account': l['account_id'][1],
-            'balance': l['debit'] - l['credit']
-        } for l in lines]
+        data = {
+            'assets': {'current': [], 'non_current': [], 'total': 0},
+            'liabilities': {'current': [], 'non_current': [], 'total': 0},
+            'equity': {'lines': [], 'total': 0},
+        }
+
+        for l in lines:
+            account_name = l.get('account_id') and l['account_id'][1] or ''
+            account_type = l.get('account_id_account_type') or ''
+
+            if account_type.startswith(('liability', 'equity')):
+                balance = l['credit'] - l['debit']
+            else:
+                balance = l['debit'] - l['credit']
+
+            entry = {
+                'account': account_name,
+                'balance': balance,
+            }
+
+            if account_type in ('asset_cash', 'asset_receivable', 'asset_current'):
+                data['assets']['current'].append(entry)
+                data['assets']['total'] += balance
+
+            elif account_type in ('asset_fixed', 'asset_non_current', 'asset_prepayments'):
+                data['assets']['non_current'].append(entry)
+                data['assets']['total'] += balance
+
+            elif account_type in ('liability_current', 'liability_payable', 'liability_credit_card'):
+                data['liabilities']['current'].append(entry)
+                data['liabilities']['total'] += balance
+
+            elif account_type == 'liability_non_current':
+                data['liabilities']['non_current'].append(entry)
+                data['liabilities']['total'] += balance
+
+            elif account_type in ('equity', 'equity_unaffected'):
+                data['equity']['lines'].append(entry)
+                data['equity']['total'] += balance
+
+        return data
+
 
     
     def action_print(self):

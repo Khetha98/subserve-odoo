@@ -61,7 +61,7 @@
         <field name="res_model">subserve.income.statement.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_income_statement_wizard"/>
-        <field name="target">new</field>
+        <field name="target">new</field> 
     </record>
 
 
@@ -95,7 +95,7 @@
         <field name="res_model">subserve.cash.flow.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_cash_flow_wizard"/>
-        <field name="target">new</field>
+        <field name="target">new</field> 
     </record>
 
     <!-- ================= reconciliation ================= -->
@@ -126,7 +126,7 @@
         <field name="res_model">subserve.reconciliation.wizard</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="view_reconciliation_wizard"/>
-        <field name="target">new</field>
+        <field name="target">new</field> 
     </record>
 
 </odoo>
