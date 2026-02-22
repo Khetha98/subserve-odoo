@@ -1,0 +1,43 @@
+<odoo>
+    <record id="cash_flow_pdf" model="ir.actions.report">
+        <field name="name">Cash Flow</field>
+        <field name="model">subserve.cash.flow.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">subserve_finance_reports.cash_flow_report</field>
+        <field name="report_file">subserve_finance_reports.cash_flow_report</field>
+        <field name="binding_model_id" ref="model_subserve_cash_flow_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="cash_flow_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Cash Flow</h2>
+                        <p>Date: <span t-field="doc.date_to"/></p>
+
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th class="text-end">Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="doc.get_lines()" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line['account']"/></td>
+                                        <td class="text-end">
+                                            <t t-esc="line['balance']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

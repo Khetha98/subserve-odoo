@@ -1,0 +1,83 @@
+<odoo>
+    <record id="income_statement_pdf" model="ir.actions.report">
+        <field name="name">Income Statement</field>
+        <field name="model">subserve.income.statement.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">subserve_finance_reports.income_statement_report</field>
+        <field name="report_file">subserve_finance_reports.income_statement_report</field>
+        <field name="binding_model_id" ref="model_subserve_income_statement_wizard"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="income_statement_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-set="data" t-value="doc.get_report_data()"/>
+                        <h2>Income Statement</h2>
+                        <p>Period: <span t-field="doc.date_from"/> to <span t-field="doc.date_to"/></p>
+
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr class="table-secondary">
+                                    <td><strong>Revenue</strong></td>
+                                    <td class="text-end"></td>
+                                </tr>
+                                <t t-foreach="data['revenue']['lines']" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line['account']"/></td>
+                                        <td class="text-end">
+                                            <t t-esc="line['balance']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <tr class="table-secondary">
+                                    <td><strong>Cost of Sales</strong></td>
+                                    <td class="text-end"></td>
+                                </tr>
+                                <t t-foreach="data['cos']['lines']" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line['account']"/></td>
+                                        <td class="text-end">
+                                            (<t t-esc="line['balance']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>)
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <tr class="table-info">
+                                    <td><strong>GROSS PROFIT</strong></td>
+                                    <td class="text-end">
+                                        <strong><t t-esc="data['revenue']['total'] - data['cos']['total']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+
+                                <tr class="table-secondary">
+                                    <td><strong>Operating Expenses</strong></td>
+                                    <td class="text-end"></td>
+                                </tr>
+                                <t t-foreach="data['expenses']['lines']" t-as="line">
+                                    <tr>
+                                        <td><t t-esc="line['account']"/></td>
+                                        <td class="text-end">
+                                            <t t-esc="line['balance']" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/>
+                                        </td>
+                                    </tr>
+                                </t>
+
+                                <t t-set="net_profit" t-value="(data['revenue']['total'] - data['cos']['total']) - data['expenses']['total'] + data['other_income']['total']"/>
+                                <tr class="table-dark text-white">
+                                    <td><strong>NET PROFIT / (LOSS)</strong></td>
+                                    <td class="text-end">
+                                        <strong><t t-esc="net_profit" t-options='{"widget": "monetary", "display_currency": res_company.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

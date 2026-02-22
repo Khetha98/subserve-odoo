@@ -1,0 +1,12 @@
+<odoo>
+    <menuitem id="menu_subserve_finance_root" name="Finance" parent="subserve_compliance.menu_subserve_root" action="action_subserve_home" sequence="10"/>
+
+    <menuitem id="menu_finance_reports_category" name="Reporting" parent="menu_subserve_finance_root" sequence="20"/>
+
+    <menuitem id="menu_balance_sheet" name="Balance Sheet" parent="menu_finance_reports_category" action="action_balance_sheet"/>
+
+    <menuitem id="menu_income_statement" name="Income Statement" parent="menu_finance_reports_category" action="action_income_statement"/>
+
+    <menuitem id="menu_cash_flow" name="Cash Flow Statement" parent="menu_finance_reports_category" action="action_cash_flow_statement"/>
+    <menuitem id="menu_reconciliation" name="Reconciliation Statement" parent="menu_finance_reports_category" action="action_reconciliation_statement"/>
+</odoo>

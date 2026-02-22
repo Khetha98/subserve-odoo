@@ -1,0 +1,10 @@
+<odoo>
+    <record id="create_default_compliance" model="ir.actions.server">
+        <field name="name">Create Default Compliance</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="state">code</field>
+        <field name="code">
+env['res.company'].create_default_compliance()
+        </field>
+    </record>
+</odoo>

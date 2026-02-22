@@ -1,0 +1,11 @@
+<odoo>
+    <record id="group_finance_wizard_user" model="res.groups">
+        <field name="name">Finance Wizard User</field>
+    </record>
+
+    <!-- Make Accounting Admin inherit it -->
+    <record id="account.group_account_manager" model="res.groups">
+        <field name="implied_ids"
+               eval="[(4, ref('subserve_finance_reports.group_finance_wizard_user'))]"/>
+    </record>
+</odoo>

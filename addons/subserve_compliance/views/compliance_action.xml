@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_subserve_compliance" model="ir.actions.act_window">
+        <field name="name">Subserve Compliance</field>
+        <field name="res_model">subserve.compliance</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first compliance record!
+            </p>
+        </field>
+    </record>
+</odoo>
